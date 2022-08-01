@@ -8,8 +8,15 @@
     function solution(s){
         let answer="";
         for (let x of s) {
-            answer += x.toUpperCase();
+            let num = x.charCodeAt();
+            if (num >= 97 && num <= 122) answer += String.fromCharCode(num - 32);
+            else answer += x;
         }
+
+
+        // for (let x of s) {
+        //     answer += x.toUpperCase();
+        // }
 
         return answer;
 
