@@ -7,33 +7,26 @@
 <script>
     function solution(arr){
         let answer = 0;
-        // 행 합
+        let sum1 = 0;
+        let sum2 = 0;
+        // 행열 합
         for (let i = 0; i < arr.length; i++) {
-            let sum = arr[i].reduce((s, c) => s + c);
-            if (answer < sum) answer = sum;
-        }
-        // 행 합
-        for (let i = 0; i < arr.length; i++) {
-            let sum = 0;
+            sum1 = 0;
+            sum2 = 0;
             for (let j = 0; j < arr.length; j++) {
-                sum += arr[j][i];
+                sum1 += arr[i][j];
+                sum2 += arr[j][i];
             }
-            if (answer < sum) answer = sum;
+            answer = Math.max(answer, sum1, sum2);
         }
         // 대각선 합
-        let crossSum = 0;
+        sum1 = 0;
+        sum2 = 0;
         for (let i = 0; i < arr.length; i++) {
-            crossSum += arr[i][i];
+            sum1 += arr[i][i];
+            sum2 += arr[i][arr.length - 1 - i];
         }
-
-        if (answer < crossSum) answer = crossSum;
-
-        // 반대 대각선 합
-        let reverseCrossSum = 0;
-        for (let i = 0; i < arr.length; i++) {
-            reverseCrossSum += arr[i][arr.length - 1 - i];
-        }
-        if (answer < reverseCrossSum) answer = reverseCrossSum;
+        answer = Math.max(answer, sum1, sum2);
         return answer;
     }
 
