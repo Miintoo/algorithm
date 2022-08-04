@@ -1,0 +1,48 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+<body>
+<script>
+    function solution(arr){
+        let answer = 0;
+        // 행 합
+        for (let i = 0; i < arr.length; i++) {
+            let sum = arr[i].reduce((s, c) => s + c);
+            if (answer < sum) answer = sum;
+        }
+        // 행 합
+        for (let i = 0; i < arr.length; i++) {
+            let sum = 0;
+            for (let j = 0; j < arr.length; j++) {
+                sum += arr[j][i];
+            }
+            if (answer < sum) answer = sum;
+        }
+        // 대각선 합
+        let crossSum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            crossSum += arr[i][i];
+        }
+
+        if (answer < crossSum) answer = crossSum;
+
+        // 반대 대각선 합
+        let reverseCrossSum = 0;
+        for (let i = 0; i < arr.length; i++) {
+            reverseCrossSum += arr[i][arr.length - 1 - i];
+        }
+        if (answer < reverseCrossSum) answer = reverseCrossSum;
+        return answer;
+    }
+
+    let arr=[[10, 13, 10, 12, 15],
+        [12, 39, 30, 23, 11],
+        [11, 25, 50, 53, 15],
+        [19, 27, 29, 37, 27],
+        [19, 13, 30, 13, 19]];
+    console.log(solution(arr));
+</script>
+</body>
+</html>
