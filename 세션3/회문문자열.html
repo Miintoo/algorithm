@@ -1,0 +1,49 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+<body>
+<script>
+  function solution(s){
+    let upperS = s.toUpperCase();
+    let reverseStr = '';
+    let answer;
+    for (let i = s.length - 1; i >= 0; i--) {
+      reverseStr += upperS[i];
+    }
+
+    if (upperS === reverseStr) answer = 'YES'
+    else answer = 'NO';
+    return answer;
+  }
+
+  let str="goooG";
+  console.log(solution(str));
+</script>
+</body>
+</html>
+
+
+<!--<html>-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>출력결과</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<script>-->
+<!--  function solution(s){-->
+<!--    let answer="YES";-->
+<!--    s=s.toLowerCase();-->
+<!--    if(s.split('').reverse().join('')!=s) return "NO";-->
+<!--    return answer;-->
+<!--  }-->
+
+<!--  let str="gooG";-->
+<!--  console.log(solution(str));-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
