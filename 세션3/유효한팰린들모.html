@@ -6,11 +6,8 @@
 <body>
 <script>
     function solution(s){
-        let changeS = '';
-        for (let x of s) {
-            if (x.charCodeAt(0) >= 65 || x.charCodeAt(0) <= 90 || x.charCodeAt(0) >= 97 || x.charCodeAt(0) <= 122) changeS += x.toUpperCase();
-        }
-        if (s.toUpperCase() === changeS) return 'YES'
+        s = s.toLowerCase().replace(/[^a-z]/g, '');
+        if (s.split('').reverse().join('') === s) return 'YES';
         else return 'NO';
     }
 
