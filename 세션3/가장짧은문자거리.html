@@ -1,0 +1,32 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>출력결과</title>
+</head>
+<body>
+<script>
+    function solution(s, t){
+        s = s.split('');
+        let answer = [];
+        let countT = s.reduce((cnt, e) => cnt + (t === e), 0);
+        console.log(s.indexOf(t, s.indexOf(t, 2) + 1));
+        for (let x of s) {
+            let min = Number.MAX_SAFE_INTEGER;
+            for (let i = 1; i <= countT; i++) {
+                let distance = Math.abs(s.indexOf(x) - s.indexOf(t, s.indexOf(t, countT) + 1));
+                if (distance === 0 || distance === 1) {
+                    min = distance;
+                    break;
+                }
+                if (min > distance) min = distance;
+            }
+            answer.push(min);
+        }
+        return answer;
+    }
+
+    let str="teachermode";
+    console.log(solution(str, 'e'));
+</script>
+</body>
+</html>
