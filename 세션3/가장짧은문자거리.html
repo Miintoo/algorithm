@@ -6,21 +6,26 @@
 <body>
 <script>
     function solution(s, t){
-        s = s.split('');
         let answer = [];
-        let countT = s.reduce((cnt, e) => cnt + (t === e), 0);
-        console.log(s.indexOf(t, s.indexOf(t, 2) + 1));
+        let init = s.length;
         for (let x of s) {
-            let min = Number.MAX_SAFE_INTEGER;
-            for (let i = 1; i <= countT; i++) {
-                let distance = Math.abs(s.indexOf(x) - s.indexOf(t, s.indexOf(t, countT) + 1));
-                if (distance === 0 || distance === 1) {
-                    min = distance;
-                    break;
-                }
-                if (min > distance) min = distance;
+            if (x === t) {
+                init = 0;
+                answer.push(init);
+            } else {
+                init += 1;
+                answer.push(init);
             }
-            answer.push(min);
+        }
+
+        for (let i = s.length - 1; i >= 0; i--) {
+            if (s[i] !== t) {
+                init += 1;
+                if (answer[i] > init) answer[i] = init;
+            } else {
+                init = 0;
+                if (answer[i] > init) answer[i] = init;
+            }
         }
         return answer;
     }
