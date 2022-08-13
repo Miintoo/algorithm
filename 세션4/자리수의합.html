@@ -7,10 +7,16 @@
 <script>
   function solution(n, arr){
     let answer = 0;
-    for (let x of arr) {
-      x = String(x).split('').map(item => +item);
+    let max = 0;
+    for (let i = 0; i < n; i++) {
+      let x = String(arr[i]).split('').map(item => +item);
       let sum = x.reduce((acu, cur) => acu + cur);
-      if (sum > answer) answer = sum;
+      if (sum > max) {
+        answer = arr[i];
+        max = sum;
+      } else if (sum === max) {
+        if (arr[i] > answer) answer = arr[i];
+      }
     }
     return answer;
   }

@@ -7,6 +7,7 @@
 <script>
     function isPrime(num) {
         let result = true;
+        if (num === 1) return false;
         for (let i = 2; i < num; i++) {
             if (num % i === 0) {
                 result = false;
@@ -20,7 +21,6 @@
         let answer = [];
         for (let x of arr) {
             let reverseNum = +String(x).split('').reverse().join('');
-            if (reverseNum === 1) continue;
             if (isPrime(reverseNum)) answer.push(reverseNum);
         }
         return answer;
