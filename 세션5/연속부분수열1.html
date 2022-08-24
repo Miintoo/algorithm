@@ -7,20 +7,36 @@
     <script>
       function solution(m, arr) {
         let answer = 0;
-        for (let i = 0; i < arr.length; i++) {
-          let sum = arr[i];
-          for (let j = i + 1; j < arr.length; j++) {
-            if (sum + arr[j] > m) {
-              break;
-            } else if (sum + arr[j] === m) {
-              answer += 1;
-              break;
-            } else {
-              sum += arr[j];
-            }
+        // for (let i = 0; i < arr.length; i++) {
+        //   let sum = arr[i];
+        //   for (let j = i + 1; j < arr.length; j++) {
+        //     if (sum + arr[j] > m) {
+        //       break;
+        //     } else if (sum + arr[j] === m) {
+        //       answer += 1;
+        //       break;
+        //     } else {
+        //       sum += arr[j];
+        //     }
+        //   }
+        // }
+        // console.log(answer);
+        let sum = 0;
+        let lt = 0;
+        let rt = 0;
+        while (rt < arr.length) {
+          if (sum === m) {
+            answer++;
+            sum -= arr[lt];
+            lt++;
+          } else if (sum > m) {
+            sum -= arr[lt];
+            lt++;
+          } else {
+            sum += arr[rt];
+            rt++;
           }
         }
-        console.log(answer);
         return answer;
       }
 
