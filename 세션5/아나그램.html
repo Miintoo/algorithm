@@ -7,8 +7,28 @@
 <script>
     function solution(str1, str2){
         let answer="YES";
-        str1.toLowerCase().split("");
-        if (str1.toLowerCase().split("").sort().join("") !== str2.toLowerCase().split("").sort().join("")) answer = "No";
+        // str1.toLowerCase().split("");
+        // if (str1.toLowerCase().split("").sort().join("") !== str2.toLowerCase().split("").sort().join("")) answer = "No";
+        str1 = str1.toLowerCase();
+        str2 = str2.toLowerCase();
+        let sh = new Map();
+        for (let x of str1) {
+            if (!sh.has(x)) sh.set(x, 1);
+            else sh.set(x, sh.get(x) + 1);
+        }
+        for (let x of str2) {
+            if (!sh.has(x)) {
+                answer = "NO";
+                break;
+            }
+            if (sh.get(x) >= 1) sh.set(x, sh.get(x) - 1);
+            else {
+                answer = "NO";
+                break;
+            }
+        }
+        console.log(sh);
+
         return answer;
     }
 
