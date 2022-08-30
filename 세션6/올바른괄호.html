@@ -7,14 +7,23 @@
 <script>
   function solution(s){
     let answer = 0;
+    // for (let x of s) {
+    //   if (x === '(') answer += 1;
+    //   else answer -= 1;
+    // }
+    //
+    // if (answer === 0) return 'YES'
+    // else return 'NO'
+    let stack = [];
     for (let x of s) {
-      if (x === '(') answer += 1;
-      else answer -= 1;
+      if (x === ')') {
+        if (stack.length < 1) return 'NO';
+        stack.pop();
+      }
+      else stack.push(x);
     }
-
-    if (answer === 0) return 'YES'
-    else return 'NO'
-
+    if (stack.length >= 1) return 'NO';
+    else return 'YES'
   }
 
   let a="(()(()))(()";
