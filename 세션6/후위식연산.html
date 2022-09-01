@@ -14,10 +14,17 @@
             } else {
                 if (x === '+') stack.push(stack.pop() + stack.pop());
                 else if (x === '*') stack.push(stack.pop() * stack.pop());
-                else if (x === '-') stack.push(-(stack.pop() - stack.pop()));
-                else if (x === '/') stack.push(Math.floor(stack.pop() / stack.pop()));
+                else if (x === '-') {
+                    let rt = stack.pop();
+                    let lt = stack.pop();
+                    stack.push(lt - rt);
+                }
+                else if (x === '/') {
+                    let rt = stack.pop();
+                    let lt = stack.pop();
+                    stack.push(Math.floor(lt / rt));
+                }
             }
-            console.log(stack)
         }
         answer = stack.pop();
         return answer;
