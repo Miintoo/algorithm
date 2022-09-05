@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+<body>
+<script>
+  function solution(need, plan){
+    let queue = [];
+    for (let x of need) {
+      queue.push(x);
+    }
+    for (let x of plan) {
+      if (queue.includes(x)) {
+        if (queue[0] === x) {
+          queue.shift();
+        } else return 'NO';
+      }
+    }
+
+    if (queue.length === 0) return 'YES'
+    else return 'NO';
+  }
+
+  let a="CBA";
+  let b="CADBGE";
+  console.log(solution(a, b));
+</script>
+</body>
+</html>
