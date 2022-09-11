@@ -10,13 +10,16 @@
       let key = arr[i];
       for (let j = i - 1; j >= 0; j--) {
         if (key < arr[j]) {
-          arr[i] = arr[j];
-          arr[j] = key;
-          key = arr[i];
-          console.log(arr);
+          let temp = arr[j];
+          let idx = arr.indexOf(key);
+          arr[j] = arr[idx];
+          arr[idx] = temp;
+        } else {
+          key = arr[j]
         }
       }
     }
+    return arr;
   }
 
   let arr=[11, 7, 5, 6, 10, 9];
