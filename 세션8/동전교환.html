@@ -9,6 +9,7 @@
     let answer = Number.MAX_SAFE_INTEGER;
     function DFS(l, sum) {
       if (sum > m) return;
+      if (l >= answer) return;
       if (sum === m) {
         answer = Math.min(answer, l);
       } else {
