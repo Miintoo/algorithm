@@ -1,0 +1,25 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+<body>
+<script>
+  function solution(m, coin){
+    let answer=0;
+    let index = coin.length - 1;
+    while(m !== 0) {
+      if (m / coin[index] >= 1) {
+        answer += m / coin[index];
+        m = m % coin[index];
+        index--;
+      }
+    }
+    return answer;
+  }
+
+  let arr=[1, 2, 5];
+  console.log(solution(15, arr));
+</script>
+</body>
+</html>
