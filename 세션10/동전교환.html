@@ -7,14 +7,22 @@
 <script>
   function solution(m, coin){
     let answer=0;
-    let index = coin.length - 1;
-    while(m !== 0) {
-      if (m / coin[index] >= 1) {
-        answer += m / coin[index];
-        m = m % coin[index];
-        index--;
+    // let index = coin.length - 1;
+    // while(m !== 0) {
+    //   if (m / coin[index] >= 1) {
+    //     answer += m / coin[index];
+    //     m = m % coin[index];
+    //     index--;
+    //   }
+    // }
+    let dy = Array.from({length: m + 1}, () => 1000);
+    dy[0] = 0;
+    for (let i = 0; i < coin.length; i++) {
+      for (let j = coin[i]; j <= m; j++) {
+          dy[j] = Math.min(dy[j], dy[j - coin[i]] + 1);
       }
     }
+    answer = dy[m];
     return answer;
   }
 
