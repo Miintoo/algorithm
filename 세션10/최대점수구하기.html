@@ -5,28 +5,45 @@
 </head>
 <body>
 <script>
+    // DFS로 푼 경우
+    // function solution(m, arr){
+    //     let answer=0;
+    //     let max = 0;
+    //     let usedValue = Array.from({length: arr.length}, () => 0);
+    //     function DFS(score, time) {
+    //         if (time > m) {
+    //             return;
+    //         } else {
+    //             for (let i = 0; i < arr.length; i++) {
+    //                 if (usedValue[i] === 0) {
+    //                     usedValue[i] = 1;
+    //                     DFS(score + arr[i][0], time + arr[i][1]);
+    //                     usedValue[i] = 0;
+    //                     if (score > max) {
+    //                         max = score;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    //     DFS(0, 0);
+    //     answer = max;
+    //     return answer;
+    // }
+
+    // DP로 푼 경우
     function solution(m, arr){
         let answer=0;
-        let max = 0;
-        let usedValue = Array.from({length: arr.length}, () => 0);
-        function DFS(score, time) {
-            if (time > m) {
-                return;
-            } else {
-                for (let i = 0; i < arr.length; i++) {
-                    if (usedValue[i] === 0) {
-                        usedValue[i] = 1;
-                        DFS(score + arr[i][0], time + arr[i][1]);
-                        usedValue[i] = 0;
-                        if (score > max) {
-                            max = score;
-                        }
-                    }
+        let dy = Array.from({length: m + 1}, () => 0);
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = m; j >= arr[i][1]; j--) {
+                let max = dy[j - arr[i][1]] + arr[i][0]
+                if (dy[j] < max) {
+                    dy[j] = max;
                 }
             }
         }
-        DFS(0, 0);
-        answer = max;
+        answer = dy[m];
         return answer;
     }
 
